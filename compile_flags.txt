@@ -1,0 +1,6 @@
+-std=c++23
+-I./include
+-I./src
+-IC:/Users/samtn/vcpkg/installed/x64-windows/include
+/W4
+/EHsc
