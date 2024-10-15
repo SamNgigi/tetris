@@ -1,30 +1,16 @@
-#include "ball.hpp"
-
 #include <print>
 #include <raylib.h>
 
 int main(){
   
-  // std::println("Hello World!");
-
-  const Color darkGreen = {20, 160, 133, 255};
-
-  constexpr int screenWidth = 800;
-  constexpr int screenHeight = 600;
-
-  Ball ball;
-
-  InitWindow(screenWidth, screenHeight, "My first RAYLIB program!");
+  Color darkBlue = {44, 44, 127, 255};
+  InitWindow(300, 600, "raylib Tetris");
   SetTargetFPS(60);
-
   while(!WindowShouldClose()){
-    ball.Update();
-
     BeginDrawing();
-      ClearBackground(darkGreen);
-      ball.Draw();
+      ClearBackground(darkBlue);
     EndDrawing();
   }
-
   CloseWindow();
+
 }
