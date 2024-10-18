@@ -1,5 +1,4 @@
-#include "grid.hpp"
-#include "tetromino.cpp"
+#include "game.hpp"
 
 #include <print>
 #include <raylib.h>
@@ -10,16 +9,15 @@ int main(){
   InitWindow(300, 600, "raylib Tetris");
   SetTargetFPS(60);
 
-  Grid grid;
-  OBlock lblock;
+  Game game; 
 
 
   while(!WindowShouldClose()){
+    game.HandleInput();
     BeginDrawing();
       ClearBackground(darkBlue);
-      grid.Draw();
-      lblock.Draw();
-   EndDrawing();
+      game.Draw();
+    EndDrawing();
   }
   CloseWindow();
 

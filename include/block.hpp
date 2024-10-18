@@ -17,7 +17,7 @@ public:
   };
   void Draw();
   void Move(int row, int col);
-  std::array<Position, 4> GetCellPosition ();
+  std::array<Position, 4> GetCellPositions();
   void Rotation();
   void UndoRotation();
   int id;
