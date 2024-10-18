@@ -31,6 +31,7 @@ public:
     cellsMap[1] = {Position(0, 2), Position(1, 2), Position(2, 2), Position(3, 2)};
     cellsMap[2] = {Position(2, 0), Position(2, 1), Position(2, 2), Position(2, 3)};
     cellsMap[3] = {Position(0, 1), Position(1, 1), Position(2, 1), Position(3, 1)};
+    Move(-1, 0);
   }
 };
 
@@ -39,6 +40,7 @@ public:
   OBlock(){
     id = 4;
     cellsMap[0] = {Position(0,0), Position(0,1), Position(1, 0), Position(1, 1)}; // ++
+    Move(0, 1);
   }
 };
 

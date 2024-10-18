@@ -9,7 +9,7 @@
 
 class Block{
 public:
-  Block(): cellSize(30), rotationState(0), colors(Colors::CellColors), rowOffset(0), colOffset(0){}
+  Block(): cellSize(30), rotationState(0), colors(Colors::CellColors), rowOffset(0), colOffset(0){Move(0,3);}
   struct Position{
     Position(): row(0), col(0) {}
     Position(int row, int col): row(row), col(col){}
