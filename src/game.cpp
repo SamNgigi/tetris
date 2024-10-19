@@ -28,6 +28,10 @@ void Game::Draw(){
 
 void Game::HandleInput(){
   int keyPressed = GetKeyPressed(); // From raylib
+  if(gameOver && keyPressed !=0){
+    gameOver = false;
+    Reset();
+  }
   switch(keyPressed){
     case KEY_DOWN:
       MoveTetrominoDown();
@@ -58,7 +62,7 @@ bool Game::IsBlockOutside(){
 void Game::MoveTetrominoDown(){
   if(!gameOver){
     currentTetromino.Move(1, 0);
-    if(IsBlockOutside() || !CollisionDetected()){
+    if(IsBlockOutside() || !BlockFits()){
       currentTetromino.Move(-1, 0);
       LockBlock();
     }
@@ -68,7 +72,7 @@ void Game::MoveTetrominoDown(){
 void Game::MoveTetrominoLeft(){
   if(!gameOver){
     currentTetromino.Move(0, -1);
-    if(IsBlockOutside() || !CollisionDetected()){
+    if(IsBlockOutside() || !BlockFits()){
       currentTetromino.Move(0, 1);
     }
   }
@@ -77,7 +81,7 @@ void Game::MoveTetrominoLeft(){
 void Game::MoveTetrominoRight(){
   if(!gameOver){
     currentTetromino.Move(0, 1);
-    if(IsBlockOutside() || !CollisionDetected()){
+    if(IsBlockOutside() || !BlockFits()){
       currentTetromino.Move(0, -1);
     }
   }
@@ -86,7 +90,7 @@ void Game::MoveTetrominoRight(){
 void Game::RotateTetromino(){
   if(!gameOver){
     currentTetromino.Rotate();
-    if(IsBlockOutside() || !CollisionDetected()){
+    if(IsBlockOutside() || !BlockFits()){
       currentTetromino.UndoRotation();
     }
   }
@@ -101,11 +105,14 @@ void Game::LockBlock(){
 
   currentTetromino = nextTetromino;
   nextTetromino = GetRandomTetromino();
+  if(!BlockFits()){
+    gameOver = true;
+  }
   grid.ClearFullRows();
 }
 
 
-bool Game::CollisionDetected(){
+bool Game::BlockFits(){
   const std::array<Block::Position, 4>& tiles = currentTetromino.GetCellPositions();
   for(Block::Position tile : tiles){
     if(!grid.IsCellEmpty(tile.row, tile.col)){
@@ -113,4 +120,12 @@ bool Game::CollisionDetected(){
     }
   }
   return true;
+}
+
+void Game::Reset(){
+  grid.Initialize();
+  tetrominoes = GetAllTetrominoes();
+  currentTetromino = GetRandomTetromino();
+  nextTetromino = GetRandomTetromino();
+  score = 0;
 }

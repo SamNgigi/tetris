@@ -29,7 +29,8 @@ private:
   void MoveTetrominoRight();
   void RotateTetromino();
   void LockBlock();
-  bool CollisionDetected();
+  bool BlockFits();
+  void Reset();
   Grid grid;
   std::vector<Block> tetrominoes;
   Block currentTetromino;

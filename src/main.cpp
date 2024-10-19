@@ -27,7 +27,7 @@ int main(){
 
   while(!WindowShouldClose()){
     game.HandleInput();
-    if(EventTriggered(0.5)){
+    if(EventTriggered(0.02)){
       game.MoveTetrominoDown();
     }
     BeginDrawing();
