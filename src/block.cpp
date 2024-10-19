@@ -6,7 +6,7 @@
 void Block::Draw(){
   const std::array<Position, 4>& tiles = GetCellPositions();
   for(auto tile : tiles){
-    DrawRectangle(tile.col * cellSize + 1, tile.row * cellSize + 1, cellSize - 1, cellSize - 1, colors[id]);
+    DrawRectangle(tile.col * cellSize + 11, tile.row * cellSize + 11, cellSize - 1, cellSize - 1, colors[id]);
   }
 }
 

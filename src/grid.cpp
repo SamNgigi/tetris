@@ -25,8 +25,8 @@ void Grid::Draw(){
     for(int col = 0; col<numCols; ++col){
       int cellVal = grid[row][col];
       DrawRectangle(
-        col * cellSize + 1, // int posX
-        row * cellSize + 1, // int posY
+        col * cellSize + 11, // int posX
+        row * cellSize + 11, // int posY
         cellSize - 1, // int width
         cellSize - 1, // int height
         colors[cellVal] // Color color
