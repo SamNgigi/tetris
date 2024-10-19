@@ -102,12 +102,14 @@ void Game::LockBlock(){
   for(Block::Position tile : tiles){
     grid.grid[tile.row][tile.col] = currentTetromino.id;
   } 
-
-  currentTetromino = nextTetromino;
-  nextTetromino = GetRandomTetromino();
+  if(!gameOver){
+    currentTetromino = nextTetromino;
+  }
   if(!BlockFits()){
     gameOver = true;
+    return;
   }
+  nextTetromino = GetRandomTetromino();
   grid.ClearFullRows();
 }
 

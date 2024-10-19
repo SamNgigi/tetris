@@ -28,6 +28,8 @@ private:
   void MoveTetrominoLeft();
   void MoveTetrominoRight();
   void RotateTetromino();
+  bool CanPlaceTetromino();
+  void SpawnNewTetromino();
   void LockBlock();
   bool BlockFits();
   void Reset();
