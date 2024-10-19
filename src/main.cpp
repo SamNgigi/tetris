@@ -1,3 +1,4 @@
+#include "colors.hpp"
 #include "game.hpp"
 
 #include <print>
@@ -35,6 +36,12 @@ int main(){
     BeginDrawing();
       ClearBackground(darkBlue);
       DrawTextEx(font, "Score", {365, 15}, 38, 2, WHITE);
+      DrawRectangleRounded({320, 55, 170, 60}, 0.3, 6, Colors::lightBlue);
+      DrawTextEx(font, "Next", {370, 175}, 38, 2, WHITE);
+      DrawRectangleRounded({320, 215, 170, 180}, 0.3, 6, Colors::lightBlue);
+      if(game.gameOver){
+        DrawTextEx(font, "GAME OVER", {320, 450}, 38, 2, WHITE);
+      }
       game.Draw();
     EndDrawing();
   }
