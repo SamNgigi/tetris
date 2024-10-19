@@ -58,8 +58,9 @@ bool Game::IsBlockOutside(){
 void Game::MoveTetrominoDown(){
   if(!gameOver){
     currentTetromino.Move(1, 0);
-    if(IsBlockOutside()){
+    if(IsBlockOutside() || !CollisionDetected()){
       currentTetromino.Move(-1, 0);
+      LockBlock();
     }
   }
 }
@@ -67,7 +68,7 @@ void Game::MoveTetrominoDown(){
 void Game::MoveTetrominoLeft(){
   if(!gameOver){
     currentTetromino.Move(0, -1);
-    if(IsBlockOutside()){
+    if(IsBlockOutside() || !CollisionDetected()){
       currentTetromino.Move(0, 1);
     }
   }
@@ -76,7 +77,7 @@ void Game::MoveTetrominoLeft(){
 void Game::MoveTetrominoRight(){
   if(!gameOver){
     currentTetromino.Move(0, 1);
-    if(IsBlockOutside()){
+    if(IsBlockOutside() || !CollisionDetected()){
       currentTetromino.Move(0, -1);
     }
   }
@@ -85,9 +86,30 @@ void Game::MoveTetrominoRight(){
 void Game::RotateTetromino(){
   if(!gameOver){
     currentTetromino.Rotate();
-    if(IsBlockOutside()){
+    if(IsBlockOutside() || !CollisionDetected()){
       currentTetromino.UndoRotation();
     }
   }
 }
 
+void Game::LockBlock(){
+  const std::array<Block::Position, 4> tiles = currentTetromino.GetCellPositions();
+  
+  for(Block::Position tile : tiles){
+    grid.grid[tile.row][tile.col] = currentTetromino.id;
+  } 
+
+  currentTetromino = nextTetromino;
+  nextTetromino = GetRandomTetromino();
+}
+
+
+bool Game::CollisionDetected(){
+  const std::array<Block::Position, 4>& tiles = currentTetromino.GetCellPositions();
+  for(Block::Position tile : tiles){
+    if(!grid.IsCellEmpty(tile.row, tile.col)){
+      return false;
+    }
+  }
+  return true;
+}

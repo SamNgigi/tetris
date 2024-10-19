@@ -5,7 +5,7 @@ public:
   LBlock(){
     id = 1;
     cellsMap[0] = {Position(1, 0), Position(1, 1), Position(1, 2), Position(0, 2)}; // ___|
-    cellsMap[1] = {Position(0, 1), Position(1, 1), Position(1, 2), Position(2, 2)};
+    cellsMap[1] = {Position(0, 1), Position(1, 1), Position(2, 1), Position(2, 2)};
     cellsMap[2] = {Position(1, 0), Position(1, 1), Position(1, 2), Position(2, 0)};
     cellsMap[3] = {Position(0, 0), Position(0, 1), Position(1, 1), Position(2, 1)};
   }
