@@ -101,6 +101,7 @@ void Game::LockBlock(){
 
   currentTetromino = nextTetromino;
   nextTetromino = GetRandomTetromino();
+  grid.ClearFullRows();
 }
 
 
