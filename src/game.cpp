@@ -23,7 +23,20 @@ Block Game::GetRandomTetromino(){
 
 void Game::Draw(){
   grid.Draw();
-  currentTetromino.Draw();
+  if(!gameOver){
+    currentTetromino.Draw(11, 11);
+    switch(nextTetromino.id){
+      case 3:
+        nextTetromino.Draw(255, 290);
+        break;
+      case 4:
+        nextTetromino.Draw(255, 280);
+        break;
+      default:
+        nextTetromino.Draw(270, 270);
+        break;
+    }
+  }
 }
 
 void Game::HandleInput(){
@@ -35,6 +48,7 @@ void Game::HandleInput(){
   switch(keyPressed){
     case KEY_DOWN:
       MoveTetrominoDown();
+      UpdateScore(0, 1);
       break;
     case KEY_LEFT:
       MoveTetrominoLeft();
@@ -102,15 +116,14 @@ void Game::LockBlock(){
   for(Block::Position tile : tiles){
     grid.grid[tile.row][tile.col] = currentTetromino.id;
   } 
-  if(!gameOver){
-    currentTetromino = nextTetromino;
-  }
+  currentTetromino = nextTetromino;
   if(!BlockFits()){
     gameOver = true;
     return;
   }
   nextTetromino = GetRandomTetromino();
-  grid.ClearFullRows();
+  int rowsCleared = grid.ClearFullRows();
+  UpdateScore(rowsCleared, 0);
 }
 
 
@@ -130,4 +143,21 @@ void Game::Reset(){
   currentTetromino = GetRandomTetromino();
   nextTetromino = GetRandomTetromino();
   score = 0;
+}
+
+
+void Game::UpdateScore(int linesCleared, int movedDownPoints){
+  switch(linesCleared){
+    case 1:
+      score += 10;
+    case 2:
+      score += 30;
+    case 3:
+      score += 50;
+    case 4:
+      score += 70;
+    default:
+      break;
+  }
+  score += movedDownPoints;
 }

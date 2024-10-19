@@ -15,7 +15,7 @@ public:
     Position(int row, int col): row(row), col(col){}
     int col, row;
   };
-  void Draw();
+  void Draw(int offsetX, int offsetY);
   void Move(int row, int col);
   std::array<Position, 4> GetCellPositions();
   void Rotate();

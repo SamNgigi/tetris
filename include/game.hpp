@@ -28,11 +28,10 @@ private:
   void MoveTetrominoLeft();
   void MoveTetrominoRight();
   void RotateTetromino();
-  bool CanPlaceTetromino();
-  void SpawnNewTetromino();
   void LockBlock();
   bool BlockFits();
   void Reset();
+  void UpdateScore(int linesCleared, int movedDownPoints);
   Grid grid;
   std::vector<Block> tetrominoes;
   Block currentTetromino;

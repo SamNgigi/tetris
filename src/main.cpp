@@ -3,6 +3,7 @@
 
 #include <print>
 #include <raylib.h>
+#include <iostream>
 
 
 double lastUpdateTime = 0;
@@ -30,13 +31,19 @@ int main(){
 
   while(!WindowShouldClose()){
     game.HandleInput();
-    if(EventTriggered(0.02)){
+    if(EventTriggered(0.42)){
       game.MoveTetrominoDown();
     }
     BeginDrawing();
       ClearBackground(darkBlue);
       DrawTextEx(font, "Score", {365, 15}, 38, 2, WHITE);
+
+      char score_text[10];
+      sprintf(score_text, "%d", game.score);
+      Vector2 textSize = MeasureTextEx(font, score_text, 38, 2);
       DrawRectangleRounded({320, 55, 170, 60}, 0.3, 6, Colors::lightBlue);
+      DrawTextEx(font, score_text, {320 + (170 - textSize.x) / 2, 65}, 38, 2, WHITE);
+      
       DrawTextEx(font, "Next", {370, 175}, 38, 2, WHITE);
       DrawRectangleRounded({320, 215, 170, 180}, 0.3, 6, Colors::lightBlue);
       if(game.gameOver){

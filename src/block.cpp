@@ -3,10 +3,10 @@
 #include <raylib.h>
 #include <array>
 
-void Block::Draw(){
+void Block::Draw(int offsetX, int offsetY){
   const std::array<Position, 4>& tiles = GetCellPositions();
   for(auto tile : tiles){
-    DrawRectangle(tile.col * cellSize + 11, tile.row * cellSize + 11, cellSize - 1, cellSize - 1, colors[id]);
+    DrawRectangle(tile.col * cellSize + offsetX, tile.row * cellSize + offsetY, cellSize - 1, cellSize - 1, colors[id]);
   }
 }
 
