@@ -18,7 +18,7 @@ public:
   void Draw();
   void Move(int row, int col);
   std::array<Position, 4> GetCellPositions();
-  void Rotation();
+  void Rotate();
   void UndoRotation();
   int id;
   std::unordered_map<int, std::array<Position, 4>> cellsMap;

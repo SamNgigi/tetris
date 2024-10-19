@@ -27,3 +27,12 @@ std::array<Block::Position, 4> Block::GetCellPositions(){
   return movedTiles;
 }
 
+void Block::Rotate(){
+  int len = (int) cellsMap.size();
+  rotationState = (rotationState + 1) % len;
+}
+
+void Block::UndoRotation(){
+  int len = (int) cellsMap.size();
+  rotationState = (rotationState + (len - 1)) % len;
+}

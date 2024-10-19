@@ -38,6 +38,9 @@ void Game::HandleInput(){
     case KEY_RIGHT:
       MoveTetrominoRight();
       break;
+    case KEY_UP:
+      RotateTetromino();
+      break;
 
   }
 }
@@ -75,6 +78,15 @@ void Game::MoveTetrominoRight(){
     currentTetromino.Move(0, 1);
     if(IsBlockOutside()){
       currentTetromino.Move(0, -1);
+    }
+  }
+}
+
+void Game::RotateTetromino(){
+  if(!gameOver){
+    currentTetromino.Rotate();
+    if(IsBlockOutside()){
+      currentTetromino.UndoRotation();
     }
   }
 }

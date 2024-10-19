@@ -27,6 +27,7 @@ private:
   bool IsBlockOutside();
   void MoveTetrominoLeft();
   void MoveTetrominoRight();
+  void RotateTetromino();
   Grid grid;
   std::vector<Block> tetrominoes;
   Block currentTetromino;
