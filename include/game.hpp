@@ -9,12 +9,8 @@
 
 class Game {
 public:
-  Game(): 
-    tetrominoes(GetAllTetrominoes()), 
-    currentTetromino(GetRandomTetromino()), 
-    nextTetromino(GetRandomTetromino()), 
-    gameOver(false), 
-    score(0){};
+  Game();
+  ~Game();
   void Draw();
   void HandleInput();
   void MoveTetrominoDown();
@@ -36,7 +32,9 @@ private:
   std::vector<Block> tetrominoes;
   Block currentTetromino;
   Block nextTetromino;
-
+  Sound rotateSound;
+  Sound clearSound;
+  Sound downSound;
   
 
 };

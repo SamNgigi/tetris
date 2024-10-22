@@ -5,6 +5,25 @@
 #include <chrono>
 #include <array>
 
+Game::Game(): 
+    tetrominoes(GetAllTetrominoes()), 
+    currentTetromino(GetRandomTetromino()), 
+    nextTetromino(GetRandomTetromino()), 
+    gameOver(false), 
+    score(0)
+{
+  InitAudioDevice();
+  rotateSound = LoadSound("sounds/rotate.mp3");
+  clearSound = LoadSound("sounds/clear_01.mp3");
+  downSound = LoadSound("sounds/down.mp3");
+}
+
+Game::~Game(){
+  UnloadSound(rotateSound);
+  UnloadSound(clearSound);
+  CloseAudioDevice();
+}
+
 std::vector<Block> Game::GetAllTetrominoes(){
   return {IBlock(), OBlock(), TBlock(), JBlock(), LBlock(), SBlock(), ZBlock()};
 }
@@ -47,6 +66,7 @@ void Game::HandleInput(){
   }
   switch(keyPressed){
     case KEY_DOWN:
+      PlaySound(downSound);
       MoveTetrominoDown();
       UpdateScore(0, 1);
       break;
@@ -106,6 +126,8 @@ void Game::RotateTetromino(){
     currentTetromino.Rotate();
     if(IsBlockOutside() || !BlockFits()){
       currentTetromino.UndoRotation();
+    } else {
+      PlaySound(rotateSound);
     }
   }
 }
@@ -123,7 +145,10 @@ void Game::LockBlock(){
   }
   nextTetromino = GetRandomTetromino();
   int rowsCleared = grid.ClearFullRows();
-  UpdateScore(rowsCleared, 0);
+  if(rowsCleared > 0){
+    PlaySound(clearSound);
+    UpdateScore(rowsCleared, 0);
+  }
 }
 
 
