@@ -7,18 +7,18 @@
 namespace Colors{
 
   inline const Color darkGrey = {26, 31, 40, 255};
-  inline const Color green = {47, 230, 23, 255};
-  inline const Color red = {232, 18, 18, 255};
-  inline const Color orange = {226, 116, 17, 255};
-  inline const Color yellow = {237, 234, 4, 255};
-  inline const Color purple = {166, 0, 247, 255};
-  inline const Color cyan = {21, 204, 209, 255};
-  inline const Color blue = {13, 64, 216, 255};
-  inline const Color lightBlue = {59, 85, 162, 255};
-  inline const Color darkBlue = {44, 44, 127, 255};
+  inline const Color green = {12, 202, 74, 255}; // replaced
+  inline const Color red = {208, 0, 0, 255}; // replaced
+  inline const Color orange = {255, 159, 28, 255}; // replaced
+  inline const Color yellow = {255, 186, 8, 255}; // replaced
+  inline const Color purple = {255, 60, 199, 255};
+  inline const Color cyan = {38, 255, 230, 255}; // replaced
+  inline const Color aquamarine = {24, 242, 178, 255}; // replaced
+  inline const Color sandyBrown = {135, 160, 178, 255};
+  inline const Color crayola = {82, 79, 105, 255};
 
   inline const std::array<Color, 8> CellColors = 
-    {darkGrey, green, red, orange, yellow, purple, cyan, blue};
+    {darkGrey, green, red, orange, yellow, purple, cyan, aquamarine};
 }
 
 
